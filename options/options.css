@@ -1,0 +1,66 @@
+button,
+select,
+option,
+input {
+    -moz-appearance: none;
+}
+
+html,
+body {
+    background: transparent;
+    box-sizing: border-box;
+    color: #222426;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    font: caption;
+    margin: 0;
+    padding: 0;
+    -moz-user-select: none;
+}
+
+body * {
+    box-sizing: border-box;
+    text-align: start;
+}
+
+label {
+    display: inline-block;
+    width: 5em;
+    font: caption;
+}
+
+input {
+    background-color: #fff;
+    border: 1px solid #b1b1b1;
+    box-shadow: 0 0 0 0 rgba(97, 181, 255, 0);
+    font: caption;
+    padding: 0 6px 0;
+    transition-duration: 250ms;
+    transition-property: box-shadow;
+    height: 24px;
+}
+
+input.hover {
+    border: 1px solid #858585;
+}
+
+input.disabled {
+    color: #999;
+    opacity: .5;
+}
+
+input.focused {
+    border-color: #0996f8;
+    box-shadow: 0 0 0 2px rgba(97, 181, 255, 0.75);
+}
+
+input:not(disabled):hover {
+    border: 1px solid #858585;
+}
+
+input:focus,
+input:focus:hover {
+    border-color: #0996f8;
+    box-shadow: 0 0 0 2px rgba(97, 181, 255, 0.75);
+}

@@ -8,8 +8,13 @@
     "48": "icons/logo-48.png"
   },
   "permissions": [
+    "storage",
     "<all_urls>"
   ],
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true
+  },
   "content_scripts": [
     {
       "matches": [
