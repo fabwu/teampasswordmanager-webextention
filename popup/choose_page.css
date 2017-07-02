@@ -3,6 +3,19 @@ body {
     overflow: hidden;
 }
 
+.hidden {
+    display: none;
+}
+
+#login-error {
+    margin: auto auto 15px;
+    color: red;
+}
+
+#success {
+    padding: 4em;
+}
+
 label {
     min-width: 60px;
 }

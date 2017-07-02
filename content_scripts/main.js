@@ -20,37 +20,3 @@ function populateFields(fields, value) {
         field.value = value;
     })
 }
-
-function handleError(e) {
-    console.log(e)
-}
-
-function request(url) {
-    return browser.storage.local.get('auth').then(fireRequest, showWrongCredentials);
-
-    function fireRequest(settings) {
-        let request = new Request('http://localhost/teampasswordmanager/index.php/api/v4/' + url + '.json', {
-            headers: new Headers({
-                'Authorization': 'Basic ' + btoa(settings.auth.username + ':' + settings.auth.password),
-                'Content-Type': 'application/json; charset=utf-8'
-            })
-        });
-        return fetch(request)
-            .then(handleResponse)
-            .catch(handleError);
-    }
-
-    function handleResponse(response) {
-        if (response.ok) {
-            return response.json();
-        }
-        if (response.status === 401) {
-            showWrongCredentials();
-        }
-        throw new Error('Network response was not ok');
-    }
-
-    function showWrongCredentials() {
-        throw new Error('Wrong credentials');
-    }
-}

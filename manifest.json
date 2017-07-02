@@ -25,6 +25,7 @@
         "*://*/*"
       ],
       "js": [
+        "lib.js",
         "content_scripts/main.js"
       ]
     }

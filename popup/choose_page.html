@@ -11,22 +11,28 @@
     <div class="panel-section panel-section-header">
         <div class="text-section-header">Team Password Manager Login</div>
     </div>
-
-    <div class="panel-section panel-section-formElements">
-        <div class="panel-formElements-item">
-            <label for="username">Username</label>
-            <input type="text" id="username">
-        </div>
-        <div class="panel-formElements-item">
-            <label for="password">Password</label>
-            <input type="password" id="password"/>
-        </div>
+    <div class="panel-section hidden" id="success">
+        Team Password Manager is connected.
     </div>
+    <div id="login-form">
+        <div class="panel-section panel-section-formElements">
+            <span id="login-error" class="hidden">Incorrect username or password</span>
+            <div class="panel-formElements-item">
+                <label for="username">Username</label>
+                <input type="text" id="username">
+            </div>
+            <div class="panel-formElements-item">
+                <label for="password">Password</label>
+                <input type="password" id="password"/>
+            </div>
+        </div>
 
-    <div class="panel-section panel-section-footer">
-        <div class="panel-section-footer-button default" id="login">Login</div>
+        <div class="panel-section panel-section-footer">
+            <div class="panel-section-footer-button default" id="login">Login</div>
+        </div>
     </div>
 </div>
+<script src="../lib.js"></script>
 <script src="choose_page.js"></script>
 </body>
 
