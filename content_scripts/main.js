@@ -46,12 +46,11 @@ function request(url) {
         }
         if (response.status === 401) {
             showWrongCredentials();
-            throw new Error('Wrong credentials');
         }
         throw new Error('Network response was not ok');
     }
 
     function showWrongCredentials() {
-        alert('Wrong Credentials')
+        throw new Error('Wrong credentials');
     }
 }

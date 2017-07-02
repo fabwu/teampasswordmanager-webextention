@@ -11,9 +11,13 @@
     "storage",
     "<all_urls>"
   ],
-  "options_ui": {
-    "page": "options/options.html",
-    "browser_style": true
+  "browser_action": {
+    "browser_style": true,
+    "default_title": "Team Password Manager",
+    "default_popup": "popup/choose_page.html",
+    "default_icon": {
+      "32": "icons/logo-32.png"
+    }
   },
   "content_scripts": [
     {
@@ -24,10 +28,5 @@
         "content_scripts/main.js"
       ]
     }
-  ],
-  "browser_action": {
-    "default_icon": "icons/logo-32.png",
-    "default_title": "Beastify",
-    "default_popup": "popup/choose_beast.html"
-  }
+  ]
 }
