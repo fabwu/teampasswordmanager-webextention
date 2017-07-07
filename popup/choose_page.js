@@ -1,32 +1,30 @@
+const urlInput = document.querySelector("#url");
 const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
 
 document.querySelector("#login").addEventListener('click', login);
 
 function login() {
-    // Icon is grey
-    // Check if auth is successful
-    // When successful light up icon and show success popup with logout button
-    // When not successful grey out icon and show login form
-
     hideLoginError();
 
+    const url = urlInput.value;
     const username = usernameInput.value;
     const password = passwordInput.value;
 
-    if (!username || !password) {
-        return showLoginError();
+    if (!username || !password || !url) {
+        return showError('All fields are required');
     }
 
-    return request('passwords', username, password)
+    return request('passwords', username, password, url)
         .then(saveCredentials)
         .catch(showLoginError);
 
     function saveCredentials() {
         return browser.storage.local.set({
             auth: {
-                username: usernameInput.value,
-                password: passwordInput.value
+                baseUrl: url,
+                username: username,
+                password: password
             }
         }).then(showSuccess);
     }
@@ -39,8 +37,14 @@ function showSuccess() {
 }
 
 function showLoginError() {
+    showError('Incorrect username or password');
+}
+
+function showError(message) {
     passwordInput.value = '';
-    document.querySelector('#login-error').classList.remove('hidden');
+    let error = document.querySelector('#login-error');
+    error.classList.remove('hidden');
+    error.innerHTML = message;
 }
 
 function hideLoginError() {

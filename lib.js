@@ -1,19 +1,19 @@
-function request(url, username, password) {
-    if (!username && !password) {
+function request(url, username, password, baseUrl) {
+    if (!username && !password && !baseUrl) {
         return useCredentialsFromStorage();
     } else {
-        return fireRequest(username, password);
+        return fireRequest(baseUrl, username, password);
     }
 
     function useCredentialsFromStorage() {
         return browser.storage.local.get('auth')
             .then(settings => {
-                return fireRequest(settings.auth.username, settings.auth.password)
+                return fireRequest(settings.auth.baseUrl, settings.auth.username, settings.auth.password)
             }, showWrongCredentials);
     }
 
-    function fireRequest(username, password) {
-        let request = new Request('http://localhost/teampasswordmanager/index.php/api/v4/' + url + '.json', {
+    function fireRequest(baseUrl, username, password) {
+        let request = new Request(baseUrl + '/index.php/api/v4/' + url + '.json', {
             headers: new Headers({
                 'Authorization': 'Basic ' + btoa(username + ':' + password),
                 'Content-Type': 'application/json; charset=utf-8'
