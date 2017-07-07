@@ -1,4 +1,7 @@
-auth()
+browser.runtime
+    .sendMessage({
+        type: 'auth'
+    })
     .then(showSuccess)
     .catch(showLoginForm);
 
@@ -26,7 +29,15 @@ function login() {
         return showError('All fields are required');
     }
 
-    return request('passwords', username, password, url)
+    browser.runtime
+        .sendMessage({
+            type: 'auth',
+            args: {
+                username: username,
+                password: password,
+                url: url,
+            }
+        })
         .then(saveCredentials)
         .catch(showLoginError);
 

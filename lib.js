@@ -1,5 +1,5 @@
-function auth() {
-    return request('generate_password');
+function auth(username, password, baseUrl) {
+    return request('generate_password', username, password, baseUrl);
 }
 
 function request(url, username, password, baseUrl) {

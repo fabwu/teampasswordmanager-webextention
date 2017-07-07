@@ -3,7 +3,12 @@ const passwordFields = document.querySelectorAll("input[type='password']");
 
 if (passwordFields.length > 0) {
     browser.runtime
-        .sendMessage({url: window.top.location.host})
+        .sendMessage({
+            type: 'search',
+            args: {
+                url: window.top.location.host
+            }
+        })
         .then(fillInCredentials);
 }
 
