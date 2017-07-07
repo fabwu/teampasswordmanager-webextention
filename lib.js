@@ -1,3 +1,7 @@
+function auth() {
+    return request('generate_password');
+}
+
 function request(url, username, password, baseUrl) {
     if (!username && !password && !baseUrl) {
         return useCredentialsFromStorage();
@@ -8,6 +12,10 @@ function request(url, username, password, baseUrl) {
     function useCredentialsFromStorage() {
         return browser.storage.local.get('auth')
             .then(settings => {
+                if (!settings.auth) {
+                    showWrongCredentials();
+                }
+
                 return fireRequest(settings.auth.baseUrl, settings.auth.username, settings.auth.password)
             }, showWrongCredentials);
     }
