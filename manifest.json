@@ -11,6 +11,12 @@
     "storage",
     "<all_urls>"
   ],
+  "background": {
+    "scripts": [
+      "lib.js",
+      "background.js"
+    ]
+  },
   "browser_action": {
     "browser_style": true,
     "default_title": "Team Password Manager",
@@ -26,7 +32,6 @@
         "*://*/*"
       ],
       "js": [
-        "lib.js",
         "content_scripts/main.js"
       ]
     }

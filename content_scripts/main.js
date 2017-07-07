@@ -1,18 +1,15 @@
 const usernameFields = document.querySelectorAll("input[name*='username']");
 const passwordFields = document.querySelectorAll("input[type='password']");
-const url = window.top.location.host;
 
 if (passwordFields.length > 0) {
-    request('passwords/search/access:' + encodeURIComponent(url)).then(loadPasswordDetails);
+    browser.runtime
+        .sendMessage({url: window.top.location.host})
+        .then(fillInCredentials);
 }
 
-function loadPasswordDetails(passwords) {
-    passwords.forEach(password => {
-        request('passwords/' + password.id).then(passwordDetail => {
-            populateFields(usernameFields, passwordDetail.username);
-            populateFields(passwordFields, passwordDetail.password)
-        })
-    })
+function fillInCredentials(auth) {
+    populateFields(usernameFields, auth.username);
+    populateFields(passwordFields, auth.password)
 }
 
 function populateFields(fields, value) {
