@@ -12,7 +12,7 @@ body {
     color: red;
 }
 
-#success {
+#success .panel-text {
     padding: 4em;
 }
 

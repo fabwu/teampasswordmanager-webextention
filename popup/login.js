@@ -1,9 +1,4 @@
-browser.runtime
-    .sendMessage({
-        type: 'auth'
-    })
-    .then(showSuccess)
-    .catch(showLoginForm);
+auth();
 
 const urlInput = document.querySelector("#url");
 const usernameInput = document.querySelector("#username");
@@ -11,7 +6,18 @@ const passwordInput = document.querySelector("#password");
 const successMessage = document.querySelector('#success');
 const loginForm = document.querySelector('#login-form');
 
-function showSuccess(r) {
+function auth() {
+    return browser.runtime
+        .sendMessage({
+            type: 'auth'
+        })
+        .then(showSuccess)
+        .catch(showLoginForm);
+}
+
+function showSuccess() {
+    document.querySelector("#logout").addEventListener('click', logout);
+
     passwordInput.value = '';
     successMessage.classList.remove('hidden');
     loginForm.classList.add('hidden');
@@ -46,6 +52,12 @@ function save() {
         url: urlInput.value,
         username: usernameInput.value,
     })
+}
+
+function logout() {
+    return browser.storage.local.set({
+        password: ''
+    }).then(auth)
 }
 
 function login() {
