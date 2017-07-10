@@ -10,14 +10,14 @@ function request(url, username, password, baseUrl) {
     }
 
     function useCredentialsFromStorage() {
-        return browser.storage.local.get('auth')
+        return browser.storage.local.get()
             .then(settings => {
-                if (!settings.auth) {
-                    showWrongCredentials();
+                if (!settings.url || !settings.username || !settings.password) {
+                    wrongCredentialsError();
                 }
 
-                return fireRequest(settings.auth.baseUrl, settings.auth.username, settings.auth.password)
-            }, showWrongCredentials);
+                return fireRequest(settings.url, settings.username, settings.password)
+            }, wrongCredentialsError);
     }
 
     function fireRequest(baseUrl, username, password) {
@@ -35,12 +35,12 @@ function request(url, username, password, baseUrl) {
             return response.json();
         }
         if (response.status === 401) {
-            showWrongCredentials();
+            wrongCredentialsError();
         }
         throw new Error('Network response was not ok');
     }
 
-    function showWrongCredentials() {
+    function wrongCredentialsError() {
         throw new Error('Wrong credentials');
     }
 }

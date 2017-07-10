@@ -20,7 +20,7 @@
   "browser_action": {
     "browser_style": true,
     "default_title": "Team Password Manager",
-    "default_popup": "popup/choose_page.html",
+    "default_popup": "popup/login.html",
     "default_icon": {
       "16": "icons/logo-16-grey.png",
       "32": "icons/logo-32-grey.png"
