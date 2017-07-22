@@ -29,6 +29,11 @@ function showLoginForm() {
 
         usernameInput.addEventListener('change', save);
         urlInput.addEventListener('change', save);
+        passwordInput.addEventListener('keyup', function (e) {
+            if (e.keyCode === 13) {
+                login();
+            }
+        });
 
         loginForm.classList.remove('hidden');
         successMessage.classList.add('hidden');
