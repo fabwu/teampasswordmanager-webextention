@@ -1,4 +1,3 @@
-const usernameFields = document.querySelectorAll("input[name*='username']");
 const passwordFields = document.querySelectorAll("input[type='password']");
 
 if (passwordFields.length > 0) {
@@ -13,12 +12,10 @@ if (passwordFields.length > 0) {
 }
 
 function fillInCredentials(auth) {
-    populateFields(usernameFields, auth.username);
-    populateFields(passwordFields, auth.password)
-}
+    passwordFields.forEach(passwordField => {
+        passwordField.value = auth.password;
 
-function populateFields(fields, value) {
-    fields.forEach(field => {
-        field.value = value;
+        const usernameField = passwordField.form.querySelector("input[type='text']");
+        usernameField.value = auth.username;
     })
 }
