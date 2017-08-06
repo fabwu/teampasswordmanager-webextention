@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Team Password Manager",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Autofill login forms with Team Password Manager",
   "homepage_url": "https://github.com/wuethrich44/teampasswordmanager-webextention",
   "icons": {
