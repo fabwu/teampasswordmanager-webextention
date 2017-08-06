@@ -4,6 +4,7 @@ const urlInput = document.querySelector("#url");
 const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
 const successMessage = document.querySelector('#success');
+const loadingMessage = document.querySelector('#loading');
 const loginForm = document.querySelector('#login-form');
 
 function auth() {
@@ -21,6 +22,7 @@ function showSuccess() {
     passwordInput.value = '';
     successMessage.classList.remove('hidden');
     loginForm.classList.add('hidden');
+    loadingMessage.classList.add('hidden');
 }
 
 function showLoginForm() {
@@ -37,7 +39,14 @@ function showLoginForm() {
 
         loginForm.classList.remove('hidden');
         successMessage.classList.add('hidden');
+        loadingMessage.classList.add('hidden');
     })
+}
+
+function showLoading() {
+    successMessage.classList.add('hidden');
+    loginForm.classList.add('hidden');
+    loadingMessage.classList.remove('hidden');
 }
 
 function loadCredentials() {
@@ -76,6 +85,8 @@ function login() {
         return showError('All fields are required');
     }
 
+    showLoading();
+
     browser.runtime
         .sendMessage({
             type: 'auth',
@@ -98,6 +109,7 @@ function login() {
 }
 
 function showLoginError() {
+    showLoginForm();
     showError('Authentication failed');
 }
 
