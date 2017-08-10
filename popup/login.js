@@ -117,7 +117,7 @@ function showError(message) {
     passwordInput.value = '';
     let error = document.querySelector('#login-error');
     error.classList.remove('hidden');
-    error.innerHTML = message;
+    error.textContent = message;
 }
 
 function hideLoginError() {

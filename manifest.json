@@ -4,6 +4,11 @@
   "version": "1.0.0",
   "description": "Autofill login forms with Team Password Manager",
   "homepage_url": "https://github.com/wuethrich44/teampasswordmanager-webextention",
+  "applications": {
+    "gecko": {
+      "id": "teampasswordmanager@wuethrich44.org"
+    }
+  },
   "icons": {
     "48": "icons/logo-48.png"
   },
