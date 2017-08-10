@@ -1,3 +1,5 @@
+dispatch({type: 'auth'});
+
 browser.runtime.onMessage.addListener(dispatch);
 
 function dispatch(message) {
