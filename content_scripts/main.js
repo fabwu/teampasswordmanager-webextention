@@ -6,7 +6,9 @@ passwordFields.forEach(passwordField => {
 });
 
 passwordFields.forEach(addIconToField);
+passwordFields.forEach(addEventListener);
 usernameFields.forEach(addIconToField);
+usernameFields.forEach(addEventListener);
 
 if (passwordFields.length > 0) {
     browser.runtime
@@ -27,6 +29,29 @@ function fillInCredentials(auth) {
     usernameFields.forEach(usernameField => {
         usernameField.value = auth.username;
     })
+}
+
+function addEventListener(element) {
+    element.addEventListener('mousemove', changeCursor);
+    element.addEventListener('click', (e) => {
+        if (isMouseOnIcon(e)) {
+            console.log('Show panel');
+        }
+    });
+}
+
+function changeCursor (e) {
+    let cursor = 'auto';
+    if (isMouseOnIcon(e)) {
+        cursor = 'pointer';
+    }
+    e.target.style.cursor = cursor;
+}
+
+function isMouseOnIcon(e) {
+    const boundingRect = e.target.getBoundingClientRect();
+    const leftLimit = boundingRect.left + boundingRect.width - 22;
+    return e.clientX > leftLimit;
 }
 
 function addIconToField(field) {
