@@ -5,11 +5,6 @@ passwordFields.forEach(passwordField => {
     usernameFields.push(passwordField.form.querySelector("input[type='text']"));
 });
 
-passwordFields.forEach(addIconToField);
-passwordFields.forEach(addEventListener);
-usernameFields.forEach(addIconToField);
-usernameFields.forEach(addEventListener);
-
 if (passwordFields.length > 0) {
     browser.runtime
         .sendMessage({
@@ -22,10 +17,14 @@ if (passwordFields.length > 0) {
 }
 
 function fillInCredentials(auth) {
+    passwordFields.forEach(addIconToField);
     passwordFields.forEach(passwordField => {
+    passwordFields.forEach(addEventListener);
         passwordField.value = auth.password;
     });
 
+    usernameFields.forEach(addIconToField);
+    usernameFields.forEach(addEventListener);
     usernameFields.forEach(usernameField => {
         usernameField.value = auth.username;
     })
