@@ -1,5 +1,6 @@
 const passwordFields = document.querySelectorAll("input[type='password']");
 const usernameFields = [];
+let panel;
 
 passwordFields.forEach(passwordField => {
     usernameFields.push(passwordField.form.querySelector("input[type='text']"));
@@ -18,8 +19,8 @@ if (passwordFields.length > 0) {
 
 function fillInCredentials(auth) {
     passwordFields.forEach(addIconToField);
-    passwordFields.forEach(passwordField => {
     passwordFields.forEach(addEventListener);
+    passwordFields.forEach(passwordField => {
         passwordField.value = auth.password;
     });
 
@@ -32,14 +33,20 @@ function fillInCredentials(auth) {
 
 function addEventListener(element) {
     element.addEventListener('mousemove', changeCursor);
-    element.addEventListener('click', (e) => {
-        if (isMouseOnIcon(e)) {
-            console.log('Show panel');
-        }
-    });
+    element.addEventListener('click', openPanel);
 }
 
-function changeCursor (e) {
+function openPanel(e) {
+    if (isMouseOnIcon(e)) {
+        if (panel === undefined) {
+            panel = new Panel(window);
+        }
+
+        panel.alignTo(e.target);
+    }
+}
+
+function changeCursor(e) {
     let cursor = 'auto';
     if (isMouseOnIcon(e)) {
         cursor = 'pointer';

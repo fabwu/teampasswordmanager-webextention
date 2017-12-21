@@ -37,6 +37,7 @@
         "*://*/*"
       ],
       "js": [
+        "lib/Panel.js",
         "content_scripts/main.js"
       ]
     }
