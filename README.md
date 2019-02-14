@@ -1,4 +1,4 @@
-# Team Password Manager Webextention
+# Team Password Manager Webextention (Deprecated)
 
 Team Password Manager Add-on allows Firefox users to fill in login forms from credentials stored in Team Password Manager.
 
